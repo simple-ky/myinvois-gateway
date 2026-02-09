@@ -18,7 +18,7 @@
     "@elysiajs/static": "^1.3.0",
     "@elysiajs/swagger": "^1.3.0",
     "elysia": "latest",
-    "myinvois-client": "^1.2.0"
+    "myinvois-client": "../myinvois-client"
   },
   "devDependencies": {
     "@sinclair/typebox": "^0.34.33",

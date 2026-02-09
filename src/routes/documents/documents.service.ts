@@ -51,6 +51,11 @@ import type {
 } from "src/schemes";
 import { getSignatureParams } from "src/utils/signature";
 import { MyInvoisError } from "src/utils/error-handler";
+import {
+  logSubmissionRequest,
+  logSubmissionResponse,
+  logSubmissionError,
+} from "src/utils/logger";
 
 export async function getRecentDocuments(
   query: GetRecentDocumentsRequestQuery
@@ -227,12 +232,15 @@ export async function submitInvoices(
     }
 
     if (query.dryRun) return documents;
+    logSubmissionRequest("invoice", documents.length, taxpayerTIN);
     const result = await client.documents.submitDocuments(
       { documents: documents },
       taxpayerTIN
     );
+    logSubmissionResponse("invoice", result);
     return result;
   } catch (error) {
+    logSubmissionError("invoice", error, taxpayerTIN);
     const action = taxpayerTIN
       ? `submitting invoices for TIN ${taxpayerTIN}`
       : "submitting invoices as taxpayer";
@@ -273,12 +281,15 @@ export async function submitCreditNotes(
     }
 
     if (query.dryRun) return documents;
+    logSubmissionRequest("creditNote", documents.length, taxpayerTIN);
     const result = await client.documents.submitDocuments(
       { documents: documents },
       taxpayerTIN
     );
+    logSubmissionResponse("creditNote", result);
     return result;
   } catch (error) {
+    logSubmissionError("creditNote", error, taxpayerTIN);
     const action = taxpayerTIN
       ? `submitting credit notes for TIN ${taxpayerTIN}`
       : "submitting credit notes as taxpayer";
@@ -320,12 +331,15 @@ export async function submitDebitNotes(
     }
 
     if (query.dryRun) return documents;
+    logSubmissionRequest("debitNote", documents.length, taxpayerTIN);
     const result = await client.documents.submitDocuments(
       { documents: documents },
       taxpayerTIN
     );
+    logSubmissionResponse("debitNote", result);
     return result;
   } catch (error) {
+    logSubmissionError("debitNote", error, taxpayerTIN);
     const action = taxpayerTIN
       ? `submitting debit notes for TIN ${taxpayerTIN}`
       : "submitting debit notes as taxpayer";
@@ -366,12 +380,15 @@ export async function submitRefundNotes(
     }
 
     if (query.dryRun) return documents;
+    logSubmissionRequest("refundNote", documents.length, taxpayerTIN);
     const result = await client.documents.submitDocuments(
       { documents: documents },
       taxpayerTIN
     );
+    logSubmissionResponse("refundNote", result);
     return result;
   } catch (error) {
+    logSubmissionError("refundNote", error, taxpayerTIN);
     const action = taxpayerTIN
       ? `submitting refund notes for TIN ${taxpayerTIN}`
       : "submitting refund notes as taxpayer";
@@ -412,12 +429,15 @@ export async function submitSelfBilledInvoices(
     }
 
     if (query.dryRun) return documents;
+    logSubmissionRequest("selfBilledInvoice", documents.length, taxpayerTIN);
     const result = await client.documents.submitDocuments(
       { documents: documents },
       taxpayerTIN
     );
+    logSubmissionResponse("selfBilledInvoice", result);
     return result;
   } catch (error) {
+    logSubmissionError("selfBilledInvoice", error, taxpayerTIN);
     const action = taxpayerTIN
       ? `submitting self-billed invoices for TIN ${taxpayerTIN}`
       : "submitting self-billed invoices as taxpayer";
@@ -458,12 +478,15 @@ export async function submitSelfBilledCreditNotes(
     }
 
     if (query.dryRun) return documents;
+    logSubmissionRequest("selfBilledCreditNote", documents.length, taxpayerTIN);
     const result = await client.documents.submitDocuments(
       { documents: documents },
       taxpayerTIN
     );
+    logSubmissionResponse("selfBilledCreditNote", result);
     return result;
   } catch (error) {
+    logSubmissionError("selfBilledCreditNote", error, taxpayerTIN);
     const action = taxpayerTIN
       ? `submitting self-billed credit notes for TIN ${taxpayerTIN}`
       : "submitting self-billed credit notes as taxpayer";
@@ -504,12 +527,15 @@ export async function submitSelfBilledDebitNotes(
     }
 
     if (query.dryRun) return documents;
+    logSubmissionRequest("selfBilledDebitNote", documents.length, taxpayerTIN);
     const result = await client.documents.submitDocuments(
       { documents: documents },
       taxpayerTIN
     );
+    logSubmissionResponse("selfBilledDebitNote", result);
     return result;
   } catch (error) {
+    logSubmissionError("selfBilledDebitNote", error, taxpayerTIN);
     const action = taxpayerTIN
       ? `submitting self-billed debit notes for TIN ${taxpayerTIN}`
       : "submitting self-billed debit notes as taxpayer";
@@ -550,12 +576,15 @@ export async function submitSelfBilledRefundNotes(
     }
 
     if (query.dryRun) return documents;
+    logSubmissionRequest("selfBilledRefundNote", documents.length, taxpayerTIN);
     const result = await client.documents.submitDocuments(
       { documents: documents },
       taxpayerTIN
     );
+    logSubmissionResponse("selfBilledRefundNote", result);
     return result;
   } catch (error) {
+    logSubmissionError("selfBilledRefundNote", error, taxpayerTIN);
     const action = taxpayerTIN
       ? `submitting self-billed refund notes for TIN ${taxpayerTIN}`
       : "submitting self-billed refund notes as taxpayer";
