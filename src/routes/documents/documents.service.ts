@@ -238,7 +238,7 @@ export async function submitInvoices(
       taxpayerTIN
     );
     logSubmissionResponse("invoice", result);
-    return result;
+    return { ...result, submittedDocuments: documents };
   } catch (error) {
     logSubmissionError("invoice", error, taxpayerTIN);
     const action = taxpayerTIN
@@ -287,7 +287,7 @@ export async function submitCreditNotes(
       taxpayerTIN
     );
     logSubmissionResponse("creditNote", result);
-    return result;
+    return { ...result, submittedDocuments: documents };
   } catch (error) {
     logSubmissionError("creditNote", error, taxpayerTIN);
     const action = taxpayerTIN
@@ -337,7 +337,7 @@ export async function submitDebitNotes(
       taxpayerTIN
     );
     logSubmissionResponse("debitNote", result);
-    return result;
+    return { ...result, submittedDocuments: documents };
   } catch (error) {
     logSubmissionError("debitNote", error, taxpayerTIN);
     const action = taxpayerTIN
@@ -386,7 +386,7 @@ export async function submitRefundNotes(
       taxpayerTIN
     );
     logSubmissionResponse("refundNote", result);
-    return result;
+    return { ...result, submittedDocuments: documents };
   } catch (error) {
     logSubmissionError("refundNote", error, taxpayerTIN);
     const action = taxpayerTIN
@@ -435,7 +435,7 @@ export async function submitSelfBilledInvoices(
       taxpayerTIN
     );
     logSubmissionResponse("selfBilledInvoice", result);
-    return result;
+    return { ...result, submittedDocuments: documents };
   } catch (error) {
     logSubmissionError("selfBilledInvoice", error, taxpayerTIN);
     const action = taxpayerTIN
@@ -484,7 +484,7 @@ export async function submitSelfBilledCreditNotes(
       taxpayerTIN
     );
     logSubmissionResponse("selfBilledCreditNote", result);
-    return result;
+    return { ...result, submittedDocuments: documents };
   } catch (error) {
     logSubmissionError("selfBilledCreditNote", error, taxpayerTIN);
     const action = taxpayerTIN
@@ -533,7 +533,7 @@ export async function submitSelfBilledDebitNotes(
       taxpayerTIN
     );
     logSubmissionResponse("selfBilledDebitNote", result);
-    return result;
+    return { ...result, submittedDocuments: documents };
   } catch (error) {
     logSubmissionError("selfBilledDebitNote", error, taxpayerTIN);
     const action = taxpayerTIN
@@ -582,7 +582,7 @@ export async function submitSelfBilledRefundNotes(
       taxpayerTIN
     );
     logSubmissionResponse("selfBilledRefundNote", result);
-    return result;
+    return { ...result, submittedDocuments: documents };
   } catch (error) {
     logSubmissionError("selfBilledRefundNote", error, taxpayerTIN);
     const action = taxpayerTIN
